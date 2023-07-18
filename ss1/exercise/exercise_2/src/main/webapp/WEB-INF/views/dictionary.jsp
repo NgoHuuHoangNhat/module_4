@@ -15,7 +15,7 @@
 <h1>Dictionary</h1>
 <h3>From Vietnamese To English</h3>
 <form action="/dictionary" method="get">
-    <label for="input">Input</label>&nbsp;<input type="text" id="input" name="search"><br>
+    <label for="input">Input</label>&nbsp;<input type="text" id="input" name="search" value="${search}"><br>
     <button style="margin-top: 20px" type="submit">Submit</button>
 </form>
 <h3>${result}</h3>

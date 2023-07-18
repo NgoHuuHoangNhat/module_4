@@ -14,22 +14,23 @@ public class DictionaryController {
     @GetMapping("dictionary")
     public String searchDictionary(@RequestParam String search, Model model){
         String[] vietnameseArr = {"Xe hơi","Nhà","Bút","Sách"};
-        String[] englishArr = {"Car","House","Pen","Bool"};
+        String[] englishArr = {"Car","House","Pen","Book"};
         if(search == null || search.equals("")){
             model.addAttribute("result","Please enter something!");
         }else {
             String result = null;
             for (int i = 0; i < vietnameseArr.length; i++) {
-                if(vietnameseArr[i].toLowerCase().equals(search.toLowerCase())){
+                if(vietnameseArr[i].trim().toLowerCase().equals(search.trim().toLowerCase())){
                     result = englishArr[i];
                 }
             }
             if(result == null){
-                model.addAttribute("result","The word "+search+" could not be found in the dictionary!");
+                model.addAttribute("result","The word \""+search+"\" could not be found in the dictionary!");
             }else {
-                model.addAttribute("result","The word "+search+" translates into English as "+result+".");
+                model.addAttribute("result","The word \""+search+"\" translates into English as \""+result+"\".");
             }
         }
+        model.addAttribute("search",search);
         return "dictionary";
     }
 }
