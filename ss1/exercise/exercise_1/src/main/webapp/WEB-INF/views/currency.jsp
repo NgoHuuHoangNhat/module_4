@@ -14,11 +14,11 @@
 </head>
 <body>
 <h1>Chuyển Đổi Tiền Tệ</h1>
-<form action="/currency_conversion/currency" method="get">
-    <label>Nhập số tiền(USD)</label><input type="number" name="usd" placeholder="usd" value="${usd}"><br>
-    <label>Nhập tỉ giá</label><input type="number" name="rate" placeholder="rate" value="${rate}"><br>
+<form action="/currency" method="get">
+    <label>Nhập số tiền(USD)</label><input type="number" name="usd" placeholder="usd" value="${usd}" REQUIRED><br>
+    <label>Nhập tỉ giá</label><input type="number" name="rate" placeholder="rate" value="${rate}"REQUIRED><br>
     <button>Tính</button>
 </form>
-<div>VND: ${result}</div>
+<div>${vnd} ${result}</div>
 </body>
 </html>
