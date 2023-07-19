@@ -16,6 +16,7 @@ public class CurrencyController {
     public String currencyConversion(@RequestParam double usd, @RequestParam float rate, Model model) {
         model.addAttribute("usd", usd);
         model.addAttribute("rate", rate);
+
         if (usd <= 0 || rate <= 0) {
             model.addAttribute("result", "Input number must be greater than 0!");
             return "/currency";
