@@ -9,28 +9,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Repository
-public class EmailBoxRepository implements IEmailBoxRepository{
-    private  List<Language> languageList = new ArrayList<>();
-    private  List<PageSize> pageSizeList = new ArrayList<>();
-    private  EmailBox emailBox;
+public class EmailBoxRepository implements IEmailBoxRepository {
+    private static List<Language> languageList = new ArrayList<>();
+    private static List<PageSize> pageSizeList = new ArrayList<>();
+    private static EmailBox emailBox;
 
-     {
-        languageList.add(new Language(1,"English"));
-        languageList.add(new Language(2,"Vietnamese"));
-        languageList.add(new Language(3,"Japanese"));
-        languageList.add(new Language(4,"Chinese"));
+    static {
+        languageList.add(new Language(1, "English"));
+        languageList.add(new Language(2, "Vietnamese"));
+        languageList.add(new Language(3, "Japanese"));
+        languageList.add(new Language(4, "Chinese"));
     }
-     {
-        pageSizeList.add(new PageSize(1,5));
-        pageSizeList.add(new PageSize(2,10));
-        pageSizeList.add(new PageSize(3,15));
-        pageSizeList.add(new PageSize(4,25));
-        pageSizeList.add(new PageSize(5,50));
-        pageSizeList.add(new PageSize(6,100));
+
+    static {
+        pageSizeList.add(new PageSize(1, 5));
+        pageSizeList.add(new PageSize(2, 10));
+        pageSizeList.add(new PageSize(3, 15));
+        pageSizeList.add(new PageSize(4, 25));
+        pageSizeList.add(new PageSize(5, 50));
+        pageSizeList.add(new PageSize(6, 100));
     }
-     {
-        emailBox = new EmailBox(languageList.get(1).getName(),pageSizeList.get(1).getSize(),true,"Thor");
+
+    static {
+        emailBox = new EmailBox(languageList.get(1).getName(), pageSizeList.get(1).getSize(), true, "Thor");
     }
+
     @Override
     public List<Language> findAllLanguageList() {
         return languageList;
@@ -47,7 +50,10 @@ public class EmailBoxRepository implements IEmailBoxRepository{
     }
 
     @Override
-    public void updateEmailBox(EmailBox emailBox) {
-        this.emailBox = emailBox;
+    public void updateEmailBox(EmailBox emailBoxInfoUpdate) {
+        emailBox.setLanguages(emailBoxInfoUpdate.getLanguages());
+        emailBox.setPageSizes(emailBoxInfoUpdate.getPageSizes());
+        emailBox.setSignature(emailBoxInfoUpdate.getSignature());
+        emailBox.setSpamsFilter(emailBoxInfoUpdate.getSpamsFilter());
     }
 }
