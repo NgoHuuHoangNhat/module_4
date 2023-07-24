@@ -28,14 +28,9 @@ public class ProductService implements IProductService {
         return product != null;
     }
 
-    @Override
-    public Integer findNewId() {
-        return productRepository.findNewId();
-    }
 
     @Override
     public void addNewProduct(Product product) {
-        product.setId(findNewId());
         productRepository.addNewProduct(product);
     }
 

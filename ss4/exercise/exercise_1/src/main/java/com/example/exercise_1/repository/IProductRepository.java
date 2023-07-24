@@ -11,8 +11,6 @@ public interface IProductRepository {
 
     Product remove(Integer id);
 
-    Integer findNewId();
-
     void addNewProduct(Product product);
 
     void updateProduct(Product product);

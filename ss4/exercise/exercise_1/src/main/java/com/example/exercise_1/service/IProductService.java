@@ -11,7 +11,6 @@ public interface IProductService {
 
     boolean remove(Integer id);
 
-    Integer findNewId();
 
     void addNewProduct(Product product);
 
