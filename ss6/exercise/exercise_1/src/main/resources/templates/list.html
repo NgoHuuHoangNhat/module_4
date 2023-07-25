@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"><head>
+    <meta charset="UTF-8">
+    <title>Blog List</title>
+</head>
+<body>
+<h1>Blog List</h1>
+<div style="color: red" th:text="${msg}"></div>
+<a href="/blog/write-new-blog-form">Write new Blog</a>
+<table style="border-collapse: collapse" border="1">
+    <tr>
+        <td>STT</td>
+        <td>Title</td>
+        <td>Content</td>
+        <td>Posting Date</td>
+        <td>Author</td>
+        <td>Category</td>
+        <td colspan="2">Action</td>
+    </tr>
+    <tr th:each="blog,status: ${blogList}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${blog.tittle}"></td>
+        <td th:text="${blog.content}"></td>
+        <td th:text="${blog.postingDate}"></td>
+        <td th:text="${blog.author}"></td>
+        <td th:text="${blog.category.name}"></td>
+        <td>
+            <form th:action="@{/blog/delete}" method="post">
+                <input hidden="hidden" th:name="id" th:value="${blog.id}">
+                <button>delete</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/blog/edit-form}" method="post">
+                <input hidden="hidden" th:name="id" th:value="${blog.id}">
+                <button>Edit</button>
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
