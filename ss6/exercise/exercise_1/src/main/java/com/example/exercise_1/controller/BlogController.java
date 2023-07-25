@@ -62,4 +62,11 @@ public class BlogController {
         redirectAttributes.addFlashAttribute("msg","Update successfully");
         return "redirect:/blog/list";
     }
+    @GetMapping("/info/{id}")
+    public ModelAndView showInfoBlog(@PathVariable Integer id){
+        ModelAndView modelAndView = new ModelAndView("info");
+        Blog blog = blogService.findById(id);
+        modelAndView.addObject("blog",blog);
+        return modelAndView;
+    }
 }

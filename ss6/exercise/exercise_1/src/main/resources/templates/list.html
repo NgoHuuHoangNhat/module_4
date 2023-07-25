@@ -11,19 +11,15 @@
     <tr>
         <td>STT</td>
         <td>Title</td>
-        <td>Content</td>
         <td>Posting Date</td>
         <td>Author</td>
-        <td>Category</td>
         <td colspan="2">Action</td>
     </tr>
     <tr th:each="blog,status: ${blogList}">
         <td th:text="${status.count}"></td>
-        <td th:text="${blog.tittle}"></td>
-        <td th:text="${blog.content}"></td>
+        <td><a th:text="${blog.tittle}" th:href="@{/blog/info/{id}(id=${blog.id})}"></a></td>
         <td th:text="${blog.postingDate}"></td>
         <td th:text="${blog.author}"></td>
-        <td th:text="${blog.category.name}"></td>
         <td>
             <form th:action="@{/blog/delete}" method="post">
                 <input hidden="hidden" th:name="id" th:value="${blog.id}">
