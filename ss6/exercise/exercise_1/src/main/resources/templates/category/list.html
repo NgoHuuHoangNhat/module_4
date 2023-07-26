@@ -40,9 +40,9 @@
         </td>
     </tr>
 </table>
-<a th:href="@{/category/list(page=${pageCategory.number-1})}" th:if="${pageCategory.hasPrevious()}">Previous</a>
+<a th:href="@{/category/list(page=${pageCategory.number-1},searchCategory=${searchCategory})}" th:if="${pageCategory.hasPrevious()}">Previous</a>
 <span th:text="${pageCategory.number + 1}"></span>/<span th:text="${pageCategory.totalPages}"></span>
-<a th:href="@{/category/list(page=${pageCategory.number+1})}" th:if="${pageCategory.hasNext()}">Next</a><br>
+<a th:href="@{/category/list(page=${pageCategory.number+1},searchCategory=${searchCategory})}" th:if="${pageCategory.hasNext()}">Next</a><br>
 <a th:href="@{/blog/list}">Home</a>
 </body>
 </html>
