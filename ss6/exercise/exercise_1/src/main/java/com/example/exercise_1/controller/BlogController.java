@@ -4,6 +4,10 @@ import com.example.exercise_1.model.Blog;
 import com.example.exercise_1.service.IBlogService;
 import com.example.exercise_1.service.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,10 +26,14 @@ public class BlogController {
     @Autowired
     private ICategoryService categoryService;
     @GetMapping("/list")
-    public String showList(Model model) {
-        List<Blog> blogList = blogService.findAll();
-        model.addAttribute("blogList", blogList);
-        return "list";
+    public ModelAndView showList(@RequestParam(defaultValue = "0") Integer page,
+                                 @RequestParam(defaultValue = "") String searchTittle) {
+        ModelAndView modelAndView = new ModelAndView("list");
+        Pageable pageable = PageRequest.of(page,2, Sort.by("postingDate").descending());
+        Page<Blog> blogPage = blogService.findAll(pageable,searchTittle);
+        modelAndView.addObject("blogPage",blogPage);
+        modelAndView.addObject("searchTittle",searchTittle);
+        return modelAndView;
     }
     @GetMapping("/write-new-blog-form")
     public ModelAndView showNewBlogForm(){

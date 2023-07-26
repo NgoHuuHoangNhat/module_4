@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <head>
+        <meta charset="UTF-8">
+        <title>Category List</title>
+    </head>
+<body>
+<h1>Category List</h1>
+<div style="color: red" th:text="${msg}"></div>
+<a href="/category/create-form">Write new Blog</a>
+<form th:href="@{category/list}" method="get">
+    <input th:name="searchCategory" th:value="${searchCategory}">
+    <button>Search</button>
+</form>
+<br>
+<table border="1" style="border-collapse: collapse">
+    <tr>
+        <td>STT</td>
+        <td>Name</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+    <tr th:each="category,status: ${pageCategory}">
+        <td th:text="${status.count}"></td>
+        <td>
+            <a th:href="@{/category/show-blog/{id}(id=${category.id})}" th:text="${category.name}"></a>
+        </td>
+        <td>
+            <form th:action="@{/category/edit-form}" method="post">
+                <input hidden="hidden" th:name="id" th:value="${category.id}">
+                <button>Edit</button>
+            </form>
+        </td>
+        <td>
+            <form th:action="@{/category/delete}" method="post">
+                <input hidden="hidden" th:name="id" th:value="${category.id}">
+                <button>Delete</button>
+            </form>
+        </td>
+    </tr>
+</table>
+<a th:href="@{/category/list(page=${pageCategory.number-1})}" th:if="${pageCategory.hasPrevious()}">Previous</a>
+<span th:text="${pageCategory.number + 1}"></span>/<span th:text="${pageCategory.totalPages}"></span>
+<a th:href="@{/category/list(page=${pageCategory.number+1})}" th:if="${pageCategory.hasNext()}">Next</a><br>
+<a th:href="@{/blog/list}">Home</a>
+</body>
+</html>

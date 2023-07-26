@@ -1,12 +1,10 @@
 package com.example.exercise_1.repository;
 
 import com.example.exercise_1.model.Blog;
-import com.example.exercise_1.model.Category;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 
-import java.util.List;
-
-public interface IBlogRepository extends JpaRepository<Blog,Integer> {
-
+public interface IBlogRepository extends JpaRepository<Blog, Integer> {
+    Page<Blog> findBlogByTittleContaining(Pageable pageable, String tittle);
 }

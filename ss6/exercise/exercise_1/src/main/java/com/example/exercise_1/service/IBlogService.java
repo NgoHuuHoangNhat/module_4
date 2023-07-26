@@ -2,13 +2,15 @@ package com.example.exercise_1.service;
 
 import com.example.exercise_1.model.Blog;
 import com.example.exercise_1.model.Category;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
 public interface IBlogService {
-    List<Blog> findAll();
+    Page<Blog> findAll(Pageable pageable, String tittle);
 
     void createNewBlog(Blog blog);
 

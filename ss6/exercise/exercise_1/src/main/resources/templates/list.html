@@ -7,6 +7,11 @@
 <h1>Blog List</h1>
 <div style="color: red" th:text="${msg}"></div>
 <a href="/blog/write-new-blog-form">Write new Blog</a>
+<a href="/category/list">Category Management</a>
+<form method="get" th:action="@{/blog/list}">
+    <input th:name="searchTittle" th:value="${searchTittle}">
+    <button>Search</button>
+</form>
 <table style="border-collapse: collapse" border="1">
     <tr>
         <td>STT</td>
@@ -15,7 +20,7 @@
         <td>Author</td>
         <td colspan="2">Action</td>
     </tr>
-    <tr th:each="blog,status: ${blogList}">
+    <tr th:each="blog,status: ${blogPage}">
         <td th:text="${status.count}"></td>
         <td><a th:text="${blog.tittle}" th:href="@{/blog/info/{id}(id=${blog.id})}"></a></td>
         <td th:text="${blog.postingDate}"></td>
@@ -34,5 +39,8 @@
         </td>
     </tr>
 </table>
+<a th:if="${blogPage.hasPrevious()}" th:href="@{/blog/list(page=${blogPage.number-1},searchTittle=${searchTittle})}">Previous</a>
+<span th:text="${blogPage.number + 1}"></span>/<span th:text="${blogPage.totalPages}"></span>
+<a th:if="${blogPage.hasNext()}" th:href="@{/blog/list(page=${blogPage.number+1},searchTittle=${searchTittle})}">Next</a>
 </body>
 </html>
