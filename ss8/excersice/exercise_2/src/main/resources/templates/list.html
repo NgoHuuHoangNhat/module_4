@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Music List</title>
+</head>
+<body>
+<h1>Music List</h1>
+<a th:href="@{/music/create-form}">Add New Song</a>
+<h3 style="color: blue" th:text="${msg}"></h3>
+<table border="1" style="border-collapse: collapse">
+    <tr>
+        <td>STT</td>
+        <td>Name</td>
+        <td>Singer</td>
+        <td>Kind Of Music</td>
+        <td>Action</td>
+    </tr>
+    <tr th:each="music,status :${musicPage}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${music.name}"></td>
+        <td th:text="${music.singer}"></td>
+        <td th:text="${music.kindOfMusic}"></td>
+        <td><a th:href="@{/music/edit-form/{id}(id=${music.id})}">Edit</a></td>
+    </tr>
+</table>
+<a th:if="${musicPage.hasPrevious()}" th:href="@{/music/list(page=${musicPage.number-1})}">Previous</a>
+<span th:text="${musicPage.number + 1}"></span>/<span th:text="${musicPage.totalPages}"></span>
+<a th:if="${musicPage.hasNext()}" th:href="@{/music/list(page=${musicPage.number+1})}">Next</a>
+</body>
+</html>
