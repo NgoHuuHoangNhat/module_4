@@ -87,31 +87,31 @@ public class UserDto implements Validator {
         UserDto userDto = (UserDto) target;
 
         if (userDto.getFirstName().trim().equals("")) {
-            errors.rejectValue("firstName", null, "Not empty!");
+            errors.rejectValue("firstName", null, "First name not empty!");
         } else if (userDto.getFirstName().length() < 5 || userDto.getFirstName().length() > 45) {
             errors.rejectValue("firstName", null, "First name length between 5 and 45!");
         }
 
         if (userDto.getLastName().trim().equals("")) {
-            errors.rejectValue("lastName", null, "Not empty!");
+            errors.rejectValue("lastName", null, "Last name not empty!");
         } else if (userDto.getLastName().length() < 5 || userDto.getLastName().length() > 45) {
             errors.rejectValue("lastName", null, "Last name length between 5 and 45!");
         }
 
         if (userDto.getBirthDay() == null) {
-            errors.rejectValue("birthDay", null, "Not empty!");
+            errors.rejectValue("birthDay", null, "Birthday not empty!");
         } else if (!BirthDay.checkAge(userDto.getBirthDay())) {
             errors.rejectValue("birthDay", null, "Do not enough 18 year old!");
         }
 
         if (userDto.getPhoneNumber().trim().equals("")) {
-            errors.rejectValue("phoneNumber", null, "Not empty");
+            errors.rejectValue("phoneNumber", null, "Phone number not empty");
         } else if (!userDto.getPhoneNumber().matches("(09|03|07|08|05)+([0-9]{8})\\b")) {
-            errors.rejectValue("phoneNumber", null, "Not matches!");
+            errors.rejectValue("phoneNumber", null, "Phone number not matches!");
         }
 
         if (userDto.getEmail().trim().equals("")) {
-            errors.rejectValue("email", null, "Not Empty!");
+            errors.rejectValue("email", null, "Email not empty!");
         } else if (userDto.getEmail().matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$\n")) {
             errors.rejectValue("email", null, "Email is wrong format!");
         }

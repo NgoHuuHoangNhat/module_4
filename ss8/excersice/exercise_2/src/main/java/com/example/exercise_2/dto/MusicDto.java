@@ -8,11 +8,11 @@ import javax.validation.constraints.NotBlank;
 public class MusicDto implements Validator {
 
     private Integer id;
-    @NotBlank(message = "Not Empty")
+    @NotBlank(message = "Music name not empty")
     private String name;
-    @NotBlank(message = "Not Empty")
+    @NotBlank(message = "Singer name not empty")
     private String singer;
-    @NotBlank(message = "Not Empty")
+    @NotBlank(message = "Kind of music not empty")
     private String kindOfMusic;
 
     public MusicDto() {
@@ -76,9 +76,9 @@ public class MusicDto implements Validator {
             errors.rejectValue("singer",null,"Singer name not contain special characters (@ ; , . = - + , ….)!");
         }
         if(musicDto.getKindOfMusic().length() > 1000){
-            errors.rejectValue("kindOfMusic",null,"Singer name not exceed 800 characters!");
+            errors.rejectValue("kindOfMusic",null,"Kind of music not exceed 800 characters!");
         }else if(!musicDto.getKindOfMusic().matches("^[a-zA-Z0-9\\s\\,]*$")){
-            errors.rejectValue("kindOfMusic",null,"Singer name not contain special characters (@ ; , . = - + , ….)!");
+            errors.rejectValue("kindOfMusic",null,"Kind of music not contain special characters (@ ; , . = - + , ….)!");
         }
     }
 }
