@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Borrow Book</title>
+</head>
+<body>
+
+<h1>Borrow Book</h1>
+<a href="/book/list">Back Home</a>
+<table>
+
+    <tr>
+        <td>Book Name:</td>
+        <td th:text="${book.name}"></td>
+    </tr>
+    <tr>
+        <td>Author:</td>
+        <td th:text="${book.author}"></td>
+    </tr>
+    <tr>
+        <td>Quantity:</td>
+        <td th:text="${book.quantity}"></td>
+        <td style="color: red" th:text="${msgQuantity}"></td>
+    </tr>
+</table>
+<form th:action="@{/borrow/get-code}" method="post" >
+    <input th:name="bookId" th:value="${book.id}" hidden="hidden">
+    <table>
+        <tr>
+            <td th:for="code">Library code<span style="color: red">*</span>:</td>
+            <td><input th:id="code" th:name="code" th:value="${code}"></td>
+            <td style="color: red" th:text="${msg}"></td>
+        </tr>
+    </table>
+    <button>Borrow</button>
+</form>
+
+<div style="margin-top: 50px;">Content</div>
+<div th:text="${book.content}"></div>
+
+</body>
+</html>

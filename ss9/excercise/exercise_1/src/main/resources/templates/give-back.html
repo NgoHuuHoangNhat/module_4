@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Give Back Book</title>
+</head>
+<body>
+<h1> Give Back Book </h1>
+<form th:action="@{/borrow/give-back}" method="post">
+    <div>
+    <input th:name="code" th:value="${code}"><span style="color: red" th:text="${msg}"></span>
+    </div>
+    <button>Give Back</button>
+</form>
+
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+</head>
+<body>
+<h1>Library</h1>
+<a href="/borrow/give-back-form">Give Back Book</a>
+<table border="1" style="border-collapse: collapse">
+
+    <tr>
+        <td>STT</td>
+        <td>Book Name</td>
+        <td>Author</td>
+        <td>Quantity</td>
+        <td>Action</td>
+    </tr>
+    <tr th:each="page,status :${bookPage}">
+        <td th:text="${status.count}"></td>
+        <td th:text="${page.name}"></td>
+        <td th:text="${page.author}"></td>
+        <td th:text="${page.quantity}"></td>
+        <td>
+            <form th:action="@{/book/info}" method="post">
+                <input hidden="hidden" th:name="id" th:value="${page.id}">
+                <button>Borrow Book</button>
+            </form>
+        </td>
+    </tr>
+
+</table>
+<a th:if="${bookPage.hasPrevious()}" th:href="@{/book/list/(page=${bookPage.number-1})}">Previous</a>
+<span th:text="${bookPage.number + 1}"></span>/<span th:text="${bookPage.totalPages}"></span>
+<a th:if="${bookPage.hasNext()}" th:href="@{/book/list/(page=${bookPage.number+1})}">Next</a>
+</body>
+</html>
