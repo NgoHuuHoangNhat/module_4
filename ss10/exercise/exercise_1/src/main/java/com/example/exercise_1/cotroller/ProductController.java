@@ -59,7 +59,8 @@ public class ProductController {
 
     @GetMapping("/pay")
     public String payOrder(@ModelAttribute Cart cart, RedirectAttributes redirectAttributes) {
-        if(cart.countItemQuantity() == 0){
+
+        if(cart.countProductQuantity() == 0){
             redirectAttributes.addFlashAttribute("msg","The cart contains no product!");
             return "redirect:/shopping-cart";
         }
