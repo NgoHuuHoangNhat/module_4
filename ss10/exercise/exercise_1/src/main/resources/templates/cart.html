@@ -23,9 +23,9 @@
         <tr th:each="product: ${cart.products}">
             <td th:text="${product.getKey().name}"></td>
             <td>
-                <a id="decrease_button" th:text="${'-'}"></a>
+                <a id="decrease_button" th:href="@{/phone/add/__${product.getKey().id}__(action='decrease')}" th:text="${'-'}"></a>
                 <span th:text="${product.getValue()}"></span>
-                <a id="increase_button" th:href="@{/phone/add/__${product.getKey().id}__(action='show')}"
+                <a id="increase_button" th:href="@{/phone/add/__${product.getKey().id}__(action='increase')}"
                    th:text="${'+'}"></a>
             </td>
             <td th:text="${product.getKey().price}"></td>

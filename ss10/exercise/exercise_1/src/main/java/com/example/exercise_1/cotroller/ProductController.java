@@ -38,10 +38,14 @@ public class ProductController {
         if (!productOptional.isPresent()) {
             return "/error-404";
         }
-        cart.addProduct(productOptional.get());
-        if (action.equals("show") || (action.equals("detail"))) {
+        if (action.equals("increase")) {
+            cart.addProduct(productOptional.get());
+            return "redirect:/shopping-cart";
+        }else if(action.equals("decrease")) {
+            cart.decreaseProduct(productOptional.get());
             return "redirect:/shopping-cart";
         }
+        cart.addProduct(productOptional.get());
         return "redirect:/phone/shop";
     }
 
