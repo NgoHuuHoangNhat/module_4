@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail</title>
+</head>
+<body>
+<a href="/shopping-cart">Your cart</a>
+<a href="/phone/shop">Home</a>
+
+<table border="1" style="border-collapse: collapse">
+
+  <tr>
+    <td>Name</td>
+    <td th:text="${product.name}"></td>
+  </tr>
+
+  <tr>
+    <td>Price</td>
+    <td th:text="${product.price}"></td>
+  </tr>
+
+  <tr>
+    <td>Description</td>
+    <td th:text="${product.description}"></td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <a th:href="@{/phone/add/__${product.id}__(action='detail')}">Add To Cart</a>
+    </td>
+  </tr>
+  <a href="/phone/pay">Pay</a>
+</table>
+</body>
+</html>
