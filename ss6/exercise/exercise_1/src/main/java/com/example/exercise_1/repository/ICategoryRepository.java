@@ -8,5 +8,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import javax.persistence.criteria.CriteriaBuilder;
 
 public interface ICategoryRepository extends JpaRepository<Category, Integer> {
-    Page<Category> findAllByNameContains(Pageable pageable, String name);
+    Page<Category> findAllByNameContaining(Pageable pageable, String name);
 }
