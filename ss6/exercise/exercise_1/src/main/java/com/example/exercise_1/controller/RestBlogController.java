@@ -28,7 +28,7 @@ public class RestBlogController {
     @GetMapping("/list")
     public ResponseEntity<Page<Blog>> getBlogList(@RequestParam(defaultValue = "0") Integer page,
                                                   @RequestParam(defaultValue = "") String search){
-        Pageable pageable = PageRequest.of(page,2,Sort.by("name").ascending());
+        Pageable pageable = PageRequest.of(page,2,Sort.by("postingDate").descending());
         Page<Blog> blogPage = blogService.findAll(pageable,search);
         if(blogPage.getTotalElements() == 0){
             return new ResponseEntity<>(blogPage,HttpStatus.NO_CONTENT);

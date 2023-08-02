@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Blog</title>
+    <script src="jquery-3.7.0.min.js"></script>
+</head>
+<body>
+<input placeholder="Search" id="search" type="text">
+<button id="searchBlog" onclick="display()">Tìm kiếm</button>
+<table border="1" style="border-collapse: collapse">
+    <thead>
+    <tr>
+        <td>STT</td>
+        <td>Title</td>
+        <td>Posting Date</td>
+        <td>Author</td>
+        <td>Category</td>
+        <td>Content</td>
+    </tr>
+    </thead>
+    <tbody id="content">
+
+    </tbody>
+</table>
+<div id="btnReadMore"></div>
+<div id="btnNextPage"></div>
+<script>
+
+
+    display()
+
+    function display(newPage) {
+        let content = "";
+        let btn = "";
+        let page = 0;
+        if (newPage > 0) {
+            page = newPage;
+        }
+
+        let search = $("#search").val()
+        $.ajax({
+            contentType: "application/json",
+            method: "GET",
+            dataType: "json",
+            url: "http://localhost:8080/api/blog/list?page=" + page + "&search=" + search,
+            success: function (data) {
+                let blog = data.content;
+                for (let i = 0; i < blog.length; i++) {
+                    content += ` <tr>
+                          <td>${i + 1}</td>
+                          <td>${blog[i].tittle}</td>
+                          <td>${blog[i].postingDate}</td>
+                          <td>${blog[i].author}</td>
+                          <td>${blog[i].category.name}</td>
+                          <td>${blog[i].content}</td>
+                        </tr>`;
+                }
+                btn += `<button onclick="readMore(${page})">Read More</button>`;
+                $("#content").append(content)
+                $("#btnReadMore").html(btn)
+            }
+        })
+    }
+
+    function readMore(page) {
+        page += 1;
+        display(page);
+    }
+</script>
+</body>
+</html>
